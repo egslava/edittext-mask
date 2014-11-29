@@ -1,5 +1,15 @@
 # MaskedEditText
 
+This project derives from [toshikurauchi/MaskedEditText](https://github.com/toshikurauchi/MaskedEditText), but it's been a little bit adapted for gradle build system and has two additional features
+
+1. filter allowed chars
+2. filter denied chars
+3. user can use chars from mask in his input (in original version of this library user couldn't use digit '7' in the '+7(XXX)XXX-XX-XX' pattern).
+
+So it allows you to use masks for phones, urls, etc.
+
+Enjoy!
+
 *************************************************************************************************
 ## en_US
 
