@@ -149,6 +149,10 @@ public class MaskedEditText extends EditText implements TextWatcher {
 	public String getMask() {
 		return this.mask;
 	}
+
+	public String getRawText() {
+		return this.rawText.getText();
+	}
 	
 	public void setCharRepresentation(char charRepresentation) {
 		this.charRepresentation = charRepresentation;
