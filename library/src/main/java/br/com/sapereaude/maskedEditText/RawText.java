@@ -11,8 +11,8 @@ public class RawText {
 	}
 
     /**
-     * text = 012345678, range = 123 => text = 0456789
-     * @param range
+     * text = 012345678, range = 123 =&gt; text = 0456789
+     * @param range given range
      */
 	public void subtractFromString(Range range) {
 		String firstPart = "";
