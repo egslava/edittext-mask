@@ -24,6 +24,8 @@
         android:inputType="phone"
         android:typeface="monospace"
         mask:allowed_chars="1234567890"
+        android:hint="9081234567"
+        android:textColorHint="@android:color/darker_gray"
         mask:mask="+7(###)###-##-##"
         />
 

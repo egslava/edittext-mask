@@ -3,17 +3,15 @@ package br.com.sapereaude.maskedEditText;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 
 public class MaskedEditText extends EditText implements TextWatcher {
 
@@ -76,6 +74,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
 				}
 			}
 		});
+		attributes.recycle();
 	}
 
 	/** @param listener - its onFocusChange() method will be called before performing MaskedEditText operations, 
@@ -97,10 +96,9 @@ public class MaskedEditText extends EditText implements TextWatcher {
 		editingOnChanged = true;
 		editingAfter = true;
 		if(hasHint()) {
-			this.setText(null);
-		}
-		else {
-			this.setText(mask.replace(charRepresentation, ' '));
+            this.setText(makeMaskedTextWithHint());
+		} else {
+            this.setText(makeMaskedText());
 		}
 		editingBefore = false;
 		editingOnChanged = false;
@@ -117,7 +115,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
 					focusChangeListener.onFocusChange(v, hasFocus);
 				}
 					
-				if(hasFocus() && (rawText.length() > 0 || !hasHint())) {
+				if (hasFocus()) {
 					selectionChanged = false;
 					MaskedEditText.this.setSelection(lastValidPosition());
 				}
@@ -129,7 +127,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
 		for(int i = maskToRaw.length - 1; i >= 0; i--) {
 			if(maskToRaw[i] != -1) return i;
 		}
-		throw new RuntimeException("Mask contains only the representation char");
+		throw new RuntimeException("Mask must contain at least one representation char");
 	}
 
 	private boolean hasHint() {
@@ -262,13 +260,11 @@ public class MaskedEditText extends EditText implements TextWatcher {
 	public void afterTextChanged(Editable s) {
 		if(!editingAfter && editingBefore && editingOnChanged) {
 			editingAfter = true;
-			if(rawText.length() == 0 && hasHint()) {
-				selection = 0;
-				setText(null);
-			}
-			else {
-				setText(makeMaskedText());
-			}
+            if (hasHint()) {
+                setText(makeMaskedTextWithHint());
+			} else {
+                setText(makeMaskedText());
+            }
 			
 			selectionChanged = false;
 			setSelection(selection);
@@ -286,20 +282,13 @@ public class MaskedEditText extends EditText implements TextWatcher {
 		// Using the boolean var selectionChanged to limit to one execution
 		if(initialized ){
 			if(!selectionChanged) {
-		
-				if(rawText.length() == 0 && hasHint()) {
-					selStart = 0;
-					selEnd = 0;
-				}
-				else {
-					selStart = fixSelection(selStart);
-					selEnd = fixSelection(selEnd);
-				}
+                selStart = fixSelection(selStart);
+                selEnd = fixSelection(selEnd);
 				setSelection(selStart, selEnd);
 				selectionChanged = true;
-			}
-			else{//check to see if the current selection is outside the already entered text
-				if(!(hasHint() && rawText.length() == 0) && selStart > rawText.length() - 1){
+			} else{
+			    //check to see if the current selection is outside the already entered text
+				if(selStart > rawText.length() - 1){
 					setSelection(fixSelection(selStart),fixSelection(selEnd));
 				}
 			}
@@ -346,13 +335,31 @@ public class MaskedEditText extends EditText implements TextWatcher {
 		for(int i = 0; i < rawToMask.length; i++) {
 			if(i < rawText.length()) {
 				maskedText[rawToMask[i]] = rawText.charAt(i);
-			}
-			else {
+			} else {
 				maskedText[rawToMask[i]] = ' ';
 			}
 		}
 		return new String(maskedText);
 	}
+
+    private CharSequence makeMaskedTextWithHint() {
+        SpannableStringBuilder ssb = new SpannableStringBuilder();
+        int mtrv;
+        for(int i = 0; i < mask.length(); i++) {
+            mtrv = maskToRaw[i];
+            if (mtrv != -1) {
+                if (mtrv < rawText.length()) {
+                    ssb.append(rawText.charAt(maskToRaw[i]));
+                } else {
+                    ssb.append(getHint().charAt(maskToRaw[i]));
+                    ssb.setSpan(new ForegroundColorSpan(getCurrentHintTextColor()), i, i + 1, 0);
+                }
+            } else {
+                ssb.append(mask.charAt(i));
+            }
+        }
+        return ssb;
+    }
 
 	private Range calculateRange(int start, int end) {
 		Range range = new Range();
@@ -385,7 +392,6 @@ public class MaskedEditText extends EditText implements TextWatcher {
 
         if (allowedChars != null){
             StringBuilder builder = new StringBuilder(string.length());
-            char[] chars = string.toCharArray();
 
             for(char c: string.toCharArray() ){
                 if (allowedChars.contains(String.valueOf(c) )){
