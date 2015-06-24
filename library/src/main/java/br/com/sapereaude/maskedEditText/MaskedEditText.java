@@ -95,7 +95,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
 		editingBefore = true;
 		editingOnChanged = true;
 		editingAfter = true;
-		if(hasHint()) {
+		if(hasHint() && rawText.length() == 0) {
             this.setText(makeMaskedTextWithHint());
 		} else {
             this.setText(makeMaskedText());
@@ -260,7 +260,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
 	public void afterTextChanged(Editable s) {
 		if(!editingAfter && editingBefore && editingOnChanged) {
 			editingAfter = true;
-            if (hasHint()) {
+            if (hasHint() && rawText.length() == 0) {
                 setText(makeMaskedTextWithHint());
 			} else {
                 setText(makeMaskedText());
@@ -331,31 +331,37 @@ public class MaskedEditText extends EditText implements TextWatcher {
 	}
 	
 	private String makeMaskedText() {
-		char[] maskedText = mask.replace(charRepresentation, ' ').toCharArray();
-		for(int i = 0; i < rawToMask.length; i++) {
-			if(i < rawText.length()) {
-				maskedText[rawToMask[i]] = rawText.charAt(i);
-			} else {
-				maskedText[rawToMask[i]] = ' ';
-			}
-		}
+        int maskedTextLength;
+        if (rawText.length() < rawToMask.length) {
+            maskedTextLength = rawToMask[rawText.length()];
+        } else {
+            maskedTextLength = mask.length();
+        }
+		char[] maskedText = new char[maskedTextLength]; //mask.replace(charRepresentation, ' ').toCharArray();
+        for (int i = 0; i < maskedText.length; i++) {
+            int rawIndex = maskToRaw[i];
+            if (rawIndex == -1) {
+                maskedText[i] = mask.charAt(i);
+            } else {
+                maskedText[i] = rawText.charAt(rawIndex);
+            }
+        }
 		return new String(maskedText);
 	}
 
     private CharSequence makeMaskedTextWithHint() {
         SpannableStringBuilder ssb = new SpannableStringBuilder();
         int mtrv;
+        int maskFirstChunkEnd = rawToMask[0];
         for(int i = 0; i < mask.length(); i++) {
             mtrv = maskToRaw[i];
             if (mtrv != -1) {
-                if (mtrv < rawText.length()) {
-                    ssb.append(rawText.charAt(maskToRaw[i]));
-                } else {
-                    ssb.append(getHint().charAt(maskToRaw[i]));
-                    ssb.setSpan(new ForegroundColorSpan(getCurrentHintTextColor()), i, i + 1, 0);
-                }
+                ssb.append(getHint().charAt(maskToRaw[i]));
             } else {
                 ssb.append(mask.charAt(i));
+            }
+            if (i >= maskFirstChunkEnd) {
+                ssb.setSpan(new ForegroundColorSpan(getCurrentHintTextColor()), i, i + 1, 0);
             }
         }
         return ssb;
