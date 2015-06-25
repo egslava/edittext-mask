@@ -18,6 +18,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
     public static final String SPACE = " ";
     private String mask;
 	private char charRepresentation;
+	private boolean keepHint;
 	private int[] rawToMask;
 	private RawText rawText;
 	private boolean editingBefore;
@@ -58,6 +59,8 @@ public class MaskedEditText extends EditText implements TextWatcher {
 		else {
 			charRepresentation = representation.charAt(0);
 		}
+
+		keepHint = attributes.getBoolean(R.styleable.MaskedEditText_keep_hint, false);
 		
 		cleanUp();
 		
@@ -260,7 +263,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
 	public void afterTextChanged(Editable s) {
 		if(!editingAfter && editingBefore && editingOnChanged) {
 			editingAfter = true;
-            if (hasHint() && rawText.length() == 0) {
+            if (hasHint() && (keepHint || rawText.length() == 0)) {
                 setText(makeMaskedTextWithHint());
 			} else {
                 setText(makeMaskedText());
@@ -356,11 +359,16 @@ public class MaskedEditText extends EditText implements TextWatcher {
         for(int i = 0; i < mask.length(); i++) {
             mtrv = maskToRaw[i];
             if (mtrv != -1) {
-                ssb.append(getHint().charAt(maskToRaw[i]));
+                if (mtrv < rawText.length()) {
+                    ssb.append(rawText.charAt(mtrv));
+                } else {
+                    ssb.append(getHint().charAt(maskToRaw[i]));
+                }
             } else {
                 ssb.append(mask.charAt(i));
             }
-            if (i >= maskFirstChunkEnd) {
+            if ((keepHint && rawText.length() < rawToMask.length && i >= rawToMask[rawText.length()])
+                    || (!keepHint && i >= maskFirstChunkEnd)) {
                 ssb.setSpan(new ForegroundColorSpan(getCurrentHintTextColor()), i, i + 1, 0);
             }
         }
