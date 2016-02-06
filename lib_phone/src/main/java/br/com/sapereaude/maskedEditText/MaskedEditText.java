@@ -7,13 +7,8 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 
 public class MaskedEditText extends EditText implements TextWatcher {
 
@@ -35,7 +30,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
 	private boolean selectionChanged;
 	private OnFocusChangeListener focusChangeListener;
     private String allowedChars;
-    private String deniedChars;
+    private char[] deniedChars;
 
     public MaskedEditText(Context context) {
 		super(context);
@@ -50,7 +45,8 @@ public class MaskedEditText extends EditText implements TextWatcher {
 		mask = attributes.getString(R.styleable.MaskedEditText_mask);
 
         allowedChars = attributes.getString(R.styleable.MaskedEditText_allowed_chars);
-        deniedChars = attributes.getString(R.styleable.MaskedEditText_denied_chars);
+		String denied = attributes.getString(R.styleable.MaskedEditText_denied_chars);
+        deniedChars = denied == null ? null : denied.toCharArray();
 
 		String representation = attributes.getString(R.styleable.MaskedEditText_char_representation);
 		
@@ -294,11 +290,11 @@ public class MaskedEditText extends EditText implements TextWatcher {
 				setSelection(selStart, selEnd);
 				selectionChanged = true;
 			}
-			else{//check to see if the current selection is outside the already entered text
-				if(!(hasHint() && rawText.length() == 0) && selStart > rawText.length() - 1){
-					setSelection(fixSelection(selStart),fixSelection(selEnd));
-				}
-			}
+//			else{//check to see if the current selection is outside the already entered text
+//				if(!(hasHint() && rawText.length() == 0) && selStart > rawText.length() - 1){
+//					setSelection(fixSelection(selStart),fixSelection(selEnd));
+//				}
+//			}
 		}
 		super.onSelectionChanged(selStart, selEnd);
 	}
@@ -358,30 +354,33 @@ public class MaskedEditText extends EditText implements TextWatcher {
 					range.setStart(maskToRaw[i]);
 				}
 				range.setEnd(maskToRaw[i]);
+			} else {
+				if(i == end && range.getStart() == range.getEnd() && start != end){
+					end++;
+				}
 			}
 		}
 		if(end == mask.length()) {
 			range.setEnd(rawText.length());
 		}
-		if(range.getStart() == range.getEnd() && start < end) {
-			int newStart = previousValidPosition(range.getStart() - 1);
-			if(newStart < range.getStart()) {
-				range.setStart(newStart);
-			}
-		}
+//		if(range.getStart() == range.getEnd() && start < end) {
+//			int newStart = previousValidPosition(range.getStart() - 1);//ошибка здесь
+//			if(newStart < range.getStart()) {
+//				range.setStart(newStart);
+//			}
+//		}
 		return range;
 	}
 	
 	private String clear(String string) {
         if (deniedChars != null){
-            for(char c: deniedChars.toCharArray()){
+            for(char c: deniedChars){
 			    string = string.replace(Character.toString(c), "");
             }
         }
 
         if (allowedChars != null){
             StringBuilder builder = new StringBuilder(string.length());
-            char[] chars = string.toCharArray();
 
             for(char c: string.toCharArray() ){
                 if (allowedChars.contains(String.valueOf(c) )){

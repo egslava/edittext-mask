@@ -1,5 +1,7 @@
 package br.com.sapereaude.maskedEditText;
 
+import java.util.Arrays;
+
 /**
  * Raw text, another words TextWithout mask characters
  */
@@ -24,11 +26,12 @@ public class RawText {
 		if(range.getEnd() >= 0 && range.getEnd() < text.length()) {
 			lastPart = text.substring(range.getEnd(), text.length());
 		}
-		text = firstPart.concat(lastPart);
+		char[] chars = new char[range.getEnd() - range.getStart()];
+        Arrays.fill(chars, '_');
+		text = firstPart.concat(new String(chars)).concat(lastPart);
 	}
 
 	/**
-	 * 
 	 * @param newString New String to be added
 	 * @param start Position to insert newString
 	 * @param maxLength Maximum raw text length
@@ -53,10 +56,20 @@ public class RawText {
 		if(start > 0) {
 			firstPart = text.substring(0, start);
 		}
+        boolean iCan = true;
 		if(start >= 0 && start < text.length()) {
 			lastPart = text.substring(start, text.length());
+            if(lastPart.indexOf("_") == 0){
+                if(lastPart.length() == 1){
+                    lastPart = "";
+                    iCan = false;
+                } else {
+                    lastPart = lastPart.substring(1);
+                    iCan = false;
+                }
+            }
 		}
-		if(text.length() + newString.length() > maxLength) {
+		if(text.length() + newString.length() > maxLength && iCan) {
 			count = maxLength - text.length();
 			newString = newString.substring(0, count);
 		}
