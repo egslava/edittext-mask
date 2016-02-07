@@ -62,11 +62,10 @@ public class RawText {
             if(lastPart.indexOf("_") == 0){
                 if(lastPart.length() == 1){
                     lastPart = "";
-                    iCan = false;
                 } else {
                     lastPart = lastPart.substring(1);
-                    iCan = false;
                 }
+				iCan = false;
             }
 		}
 		if(text.length() + newString.length() > maxLength && iCan) {

@@ -26,5 +26,11 @@
         mask:allowed_chars="1234567890"
         mask:mask="+7(###)###-##-##"
         />
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:typeface="monospace"/>
 
 </LinearLayout>

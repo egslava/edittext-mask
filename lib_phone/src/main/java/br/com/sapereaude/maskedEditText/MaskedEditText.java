@@ -74,7 +74,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
 		});
 	}
 
-	/** @param listener - its onFocusChange() method will be called before performing MaskedEditText operations, 
+	/** @param listener - its onFocusChange() method will be called before performing MaskTextWatcher operations,
 	 * related to this event. */
 	@Override
 	public void setOnFocusChangeListener(OnFocusChangeListener listener) {
