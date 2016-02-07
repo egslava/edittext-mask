@@ -1,8 +1,12 @@
 package br.com.sapereaude.maskedEditText;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.widget.EditText;
 
 import java.util.Arrays;
@@ -24,6 +28,13 @@ public class MaskTextWatcher implements TextWatcher {
     private int selection;
     private int lastValidMaskPosition;
     protected int maxRawLength;
+    private ReturnFormatString returnFormatString;
+    private int maskStyleColor;
+    private int textStyleColor;
+
+    public MaskTextWatcher(@NonNull EditText editText){
+        this(editText, '_', null, null);
+    }
 
     public MaskTextWatcher(@NonNull EditText editText, char emptySymbol, String mask, String allowedChars) {
         this.editText = editText;
@@ -31,7 +42,9 @@ public class MaskTextWatcher implements TextWatcher {
         String defaultMask = "##:##";
         this.mask = mask == null ? defaultMask : mask;
         this.allowedChars = allowedChars == null ? "1234567890" : allowedChars;
+        this.maskStyleColor = Color.parseColor("#999999");
 
+        this.textStyleColor = Color.parseColor("#000000");
         cleanUp();
     }
 
@@ -49,7 +62,7 @@ public class MaskTextWatcher implements TextWatcher {
         if (hasHint()) {
             editText.setText(null);
         } else {
-            editText.setText(mask.replace(charRepresentation, emptySymbol));
+            editText.setText(makeColorMaskedText());
         }
         editingBefore = false;
         editingOnChanged = false;
@@ -71,9 +84,27 @@ public class MaskTextWatcher implements TextWatcher {
         return editText.getHint() != null;
     }
 
+    public void setColorMask(String colorMask){
+        this.maskStyleColor = Color.parseColor(colorMask);
+    }
+
+    public void setColorText(String colorText){
+        this.textStyleColor = Color.parseColor(colorText);
+    }
+
     public void setMask(String mask) {
         this.mask = mask;
         cleanUp();
+    }
+
+    public void setOnReturnStringFormat(ReturnFormatString fString){
+        this.returnFormatString = fString;
+    }
+
+    public String getString(){
+        if(returnFormatString != null){
+            return returnFormatString.getString(rawText.text);
+        } else return rawText.text;
     }
 
     public String getMask() {
@@ -174,7 +205,7 @@ public class MaskTextWatcher implements TextWatcher {
                 selection = 0;
                 editText.setText(null);
             } else {
-                editText.setText(makeMaskedText());
+                editText.setText(makeColorMaskedText());
             }
 
             editText.setSelection(selection);
@@ -231,6 +262,17 @@ public class MaskTextWatcher implements TextWatcher {
         return new String(maskedText);
     }
 
+    private SpannableString makeColorMaskedText(){
+        SpannableString raw = new SpannableString(makeMaskedText());
+        for(int count = 0; count < maskToRaw.length; count++){
+            raw.setSpan(maskToRaw[count] == -1 ||
+                    ( maskToRaw[count] >= 0 && maskToRaw[count] < rawText.text.length() && rawText.text.charAt(maskToRaw[count]) == emptySymbol) ?
+                    new ForegroundColorSpan(maskStyleColor) : new ForegroundColorSpan(textStyleColor), count, count + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        return raw;
+    }
+
     private Range calculateRange(int start, int end) {
         Range range = new Range();
         for (int i = start; i <= end && i < mask.length(); i++) {
@@ -262,7 +304,7 @@ public class MaskTextWatcher implements TextWatcher {
         return builder.toString();
     }
 
-    private class RawText {
+    private class RawText{
         private String text;
 
         public RawText() {
@@ -273,7 +315,6 @@ public class MaskTextWatcher implements TextWatcher {
 
         /**
          * text = 012345678, range = 123 => text = 03456789
-         *
          * @param range
          */
         public void subtractFromString(Range range) {
@@ -351,5 +392,9 @@ public class MaskTextWatcher implements TextWatcher {
             start = -1;
             end = -1;
         }
+    }
+
+    public static interface ReturnFormatString{
+        String getString(String defaultString);
     }
 }

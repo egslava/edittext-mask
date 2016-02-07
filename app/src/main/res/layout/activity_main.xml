@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:mask="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -17,15 +16,6 @@
         android:text="@string/please_provide_phone_number"
         />
 
-    <br.com.sapereaude.maskedEditText.MaskedEditText
-        android:id="@+id/phone_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:typeface="monospace"
-        mask:allowed_chars="1234567890"
-        mask:mask="+7(###)###-##-##"
-        />
     <EditText
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
