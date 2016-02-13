@@ -1,6 +1,7 @@
 package br.com.sapereaude.maskedEditText;
 
 import android.graphics.Color;
+//import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.SpannableString;
@@ -11,6 +12,9 @@ import android.widget.EditText;
 
 import java.util.Arrays;
 
+/**
+ * Created by samohvalov on 05.02.2016.
+ */
 public class MaskTextWatcher implements TextWatcher {
     private char emptySymbol;
     private char charRepresentation = '#';
@@ -48,7 +52,7 @@ public class MaskTextWatcher implements TextWatcher {
         cleanUp();
     }
 
-    private void cleanUp() {
+    protected void cleanUp() {
         initialized = false;
 
         generatePositionArrays();
@@ -84,6 +88,14 @@ public class MaskTextWatcher implements TextWatcher {
         return editText.getHint() != null;
     }
 
+    public void setColorMask(int colorMask){
+        this.maskStyleColor = colorMask;
+    }
+
+    public void setColorText(int colorText){
+        this.textStyleColor = colorText;
+    }
+
     public void setColorMask(String colorMask){
         this.maskStyleColor = Color.parseColor(colorMask);
     }
@@ -97,8 +109,29 @@ public class MaskTextWatcher implements TextWatcher {
         cleanUp();
     }
 
+    public char getEmptySymbol(){
+        return emptySymbol;
+    }
+
     public void setOnReturnStringFormat(ReturnFormatString fString){
         this.returnFormatString = fString;
+    }
+
+    protected String getSelectedString(){
+        if(editText.getSelectionStart() == 0 && editText.getSelectionEnd() == maskToRaw.length - 1)
+            return getString();
+
+        String selectedRaw = editText.getText().toString()
+                .substring(editText.getSelectionStart(), editText.getSelectionEnd());
+        String selected = "";
+        for(char c: selectedRaw.toCharArray()){
+            if(!mask.contains(String.valueOf(c))){
+                selected = selected.concat(String.valueOf(c));
+            }
+        }
+        if(returnFormatString != null){
+            return returnFormatString.getString(selected);
+        } else return selected;
     }
 
     public String getString(){
@@ -269,7 +302,6 @@ public class MaskTextWatcher implements TextWatcher {
                     ( maskToRaw[count] >= 0 && maskToRaw[count] < rawText.text.length() && rawText.text.charAt(maskToRaw[count]) == emptySymbol) ?
                     new ForegroundColorSpan(maskStyleColor) : new ForegroundColorSpan(textStyleColor), count, count + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-
         return raw;
     }
 
@@ -398,3 +430,4 @@ public class MaskTextWatcher implements TextWatcher {
         String getString(String defaultString);
     }
 }
+
