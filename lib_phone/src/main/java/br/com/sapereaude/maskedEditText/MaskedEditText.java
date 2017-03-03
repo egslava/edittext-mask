@@ -2,6 +2,7 @@ package br.com.sapereaude.maskedEditText;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class MaskedEditText extends EditText implements TextWatcher {
+public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
     public static final String SPACE = " ";
     private String mask;
@@ -36,6 +37,7 @@ public class MaskedEditText extends EditText implements TextWatcher {
 	private OnFocusChangeListener focusChangeListener;
     private String allowedChars;
     private String deniedChars;
+
 
     public MaskedEditText(Context context) {
 		super(context);
