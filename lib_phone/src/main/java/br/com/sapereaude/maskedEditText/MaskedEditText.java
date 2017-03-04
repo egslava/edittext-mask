@@ -10,9 +10,12 @@ import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
+
+import static android.content.ContentValues.TAG;
 
 public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
@@ -85,7 +88,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		final Parcelable superParcellable = super.onSaveInstanceState();
 		final Bundle state = new Bundle();
 		state.putParcelable("super", superParcellable);
-		state.putString("text", rawText.getText());
+		state.putString("text", getRawText());
 		return state;
 	}
 
@@ -95,6 +98,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		super.onRestoreInstanceState(((Bundle) state).getParcelable("super"));
 		final String text = bundle.getString("text");
 
+		Log.d(TAG, "onRestoreInstanceState: " + text);
 		setText(text);
 	}
 
@@ -311,7 +315,11 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 			} else{
 			    //check to see if the current selection is outside the already entered text
 				if(selStart > rawText.length() - 1){
-					setSelection(fixSelection(selStart),fixSelection(selEnd));
+					final int start = fixSelection(selStart);
+					final int end = fixSelection(selEnd);
+					if (start >= 0 && end < getText().length()){
+						setSelection(start, end);
+					}
 				}
 			}
 		}

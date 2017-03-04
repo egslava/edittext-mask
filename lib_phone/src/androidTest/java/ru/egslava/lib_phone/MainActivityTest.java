@@ -87,4 +87,15 @@ public class MainActivityTest {
             isDisplayed())
         ).check(matches(withText("+7(999)705-56-71")));
     }
+
+
+    /**
+     * After merging with Alexander Matveychuk, the demo app started to crash
+     * if there's no any text and you rotate the phone
+     */
+    @Test
+    public void saveInstanceStateTest2() {
+        mActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        mActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
 }
