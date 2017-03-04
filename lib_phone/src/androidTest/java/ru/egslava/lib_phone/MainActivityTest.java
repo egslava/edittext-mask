@@ -34,7 +34,6 @@ public class MainActivityTest {
         onView(
             allOf(
                 withId(phone_input),
-                withText("+7(   )   -  -  "),
                 isDisplayed())
         ).perform(click());
 
@@ -42,7 +41,6 @@ public class MainActivityTest {
         onView(
             allOf(
                 withId(phone_input),
-                withText("+7(   )   -  -  "),
                 isDisplayed())
         ).perform(typeText("9997055671"));
 
@@ -64,7 +62,6 @@ public class MainActivityTest {
         onView(
             allOf(
                 withId(phone_input),
-                withText("+7(   )   -  -  "),
                 isDisplayed())
         ).perform(click());
 
@@ -72,7 +69,6 @@ public class MainActivityTest {
         onView(
             allOf(
                 withId(phone_input),
-                withText("+7(   )   -  -  "),
                 isDisplayed())
         ).perform(typeText("9997055671"));
 
