@@ -4,6 +4,6 @@
     <string name="app_name">EditTextPhoneNumber</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="please_provide_phone_number">Please, provide your phone number</string>
+    <string name="please_provide_phone_number">Enter something</string>
 
 </resources>

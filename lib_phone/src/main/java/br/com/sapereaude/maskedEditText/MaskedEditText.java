@@ -242,7 +242,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 			if(after == 0) {
 				rangeStart = erasingStart(start);
 			}
-			Range range = calculateRange(rangeStart, start + count);
+			MaskTextWatcher.Range range = calculateRange(rangeStart, start + count);
 			if(range.getStart() != -1) {
 				rawText.subtractFromString(range);
 			}
@@ -402,8 +402,8 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
         return ssb;
     }
 
-	private Range calculateRange(int start, int end) {
-		Range range = new Range();
+	private MaskTextWatcher.Range calculateRange(int start, int end) {
+		MaskTextWatcher.Range range = new MaskTextWatcher.Range();
 		for(int i = start; i <= end && i < mask.length(); i++) {
 			if(maskToRaw[i] != -1) {
 				if(range.getStart() == -1) {

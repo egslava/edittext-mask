@@ -14,7 +14,7 @@ public class RawText {
      * text = 012345678, range = 123 =&gt; text = 0456789
      * @param range given range
      */
-	public void subtractFromString(Range range) {
+	public void subtractFromString(MaskTextWatcher.Range range) {
 		String firstPart = "";
 		String lastPart = "";
 		
