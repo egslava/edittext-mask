@@ -2,19 +2,15 @@ package br.com.sapereaude.maskedEditText;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 
 public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
@@ -27,7 +23,6 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 	private boolean editingOnChanged;
 	private boolean editingAfter;
 	private int[] maskToRaw;
-	private char[] charsInMask;
 	private int selection;
 	private boolean initialized;
 	private boolean ignore;
@@ -78,9 +73,29 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 				}
 			}
 		});
+
+		attributes.recycle();
 	}
 
-	/** @param listener - its onFocusChange() method will be called before performing MaskedEditText operations, 
+	@Override
+	public Parcelable onSaveInstanceState() {
+		final Parcelable superParcellable = super.onSaveInstanceState();
+		final Bundle state = new Bundle();
+		state.putParcelable("super", superParcellable);
+		state.putString("text", rawText.getText());
+		return state;
+	}
+
+	@Override
+	public void onRestoreInstanceState(Parcelable state) {
+		Bundle bundle = (Bundle) state;
+		super.onRestoreInstanceState(((Bundle) state).getParcelable("super"));
+		final String text = bundle.getString("text");
+
+		setText(text);
+	}
+
+	/** @param listener - its onFocusChange() method will be called before performing MaskedEditText operations,
 	 * related to this event. */
 	@Override
 	public void setOnFocusChangeListener(OnFocusChangeListener listener) {
@@ -192,7 +207,8 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		if(charsInMaskAux.indexOf(' ') < 0) {
 			charsInMaskAux = charsInMaskAux + SPACE;
 		}
-		charsInMask = charsInMaskAux.toCharArray();
+
+		char[] charsInMask = charsInMaskAux.toCharArray();
 		
 		rawToMask = new int[charIndex];
 		for (int i = 0; i < charIndex; i++) {
