@@ -1,4 +1,9 @@
 apply plugin: 'com.android.library'
+//apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.jfrog.bintray'
+
+version = "1.0.4"
+
 
 android {
     compileSdkVersion 25
@@ -13,9 +18,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        release {
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+//        release {
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
     }
 }
 
@@ -29,3 +34,85 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 }
+
+
+// The end of the gradle file is for JCenter publication.
+// The original code was written by Alexander Matveychuk
+// https://www.virag.si/2015/01/publishing-gradle-android-library-to-jcenter/
+//
+//def siteUrl = 'https://github.com/alexandermatveychuk/edittext-mask'
+//def gitUrl = 'https://github.com/alexandermatveychuk/edittext-mask.git'
+//group = "me.alexandermatveychuk.android.maskededittext"
+//
+//install {
+//    repositories.mavenInstaller{
+//        pom {
+//            project {
+//                packaging 'aar'
+//
+//                name 'MaskedEditText aar package'
+//                url siteUrl
+//
+//                licenses{
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//
+//                developers {
+//                    developer {
+//                        id 'alexandermatveychuk'
+//                        name 'Alexander Matveychuk'
+//                        email 'alexander.matveychuk@gmail.com'
+//                    }
+//                }
+//
+//                scm {
+//                    connection gitUrl
+//                    developerConnection gitUrl
+//                    url siteUrl
+//                }
+//
+//            }
+//        }
+//    }
+//}
+//
+//task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//
+//artifacts {
+//    archives javadocJar
+//    archives sourcesJar
+//}
+//
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//
+//bintray {
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+//
+//    configurations = ['archives']
+//    pkg {
+//        repo = "maven"
+//        name = "MaskedEditText"
+//        websiteUrl = siteUrl
+//        vcsUrl = gitUrl
+//        licenses = ["Apache-2.0"]
+//        publish = true
+//    }
+//}
