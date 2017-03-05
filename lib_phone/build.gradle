@@ -1,9 +1,15 @@
+plugins {
+    id "com.jfrog.bintray" version "1.7.3"
+}
+
 apply plugin: 'com.android.library'
-//apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
 
-version = "1.0.4"
+String projectVersion = "1.0.2"
+String projectGroup = "ru.egslava"
 
+version = projectVersion
+group = projectGroup
 
 android {
     compileSdkVersion 25
@@ -14,13 +20,8 @@ android {
         minSdkVersion 10
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName projectVersion
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-//        release {
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//        }
     }
 }
 
@@ -36,83 +37,96 @@ dependencies {
 }
 
 
+// bintray deploy ....
+String projectName = "edittext-mask"
+String projectDescription = GFileUtils.readFile(new File("README.md"))
+String webUrl = "https://github.com/egslava/edittext-mask"
+String gitUrl = "https://github.com/egslava/edittext-mask.git"
+
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                
+                name projectName
+                description projectDescription
+                url webUrl
+
+                inceptionYear '2017' // HARDCODED
+
+                licenses {
+                    license {
+                        name 'MIT'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url webUrl
+                }
+                developers {
+                    developer {
+                        id 'egslava'
+                        name 'Slava Egorenkov'
+                        email 'egslava@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
 // The end of the gradle file is for JCenter publication.
 // The original code was written by Alexander Matveychuk
 // https://www.virag.si/2015/01/publishing-gradle-android-library-to-jcenter/
-//
-//def siteUrl = 'https://github.com/alexandermatveychuk/edittext-mask'
-//def gitUrl = 'https://github.com/alexandermatveychuk/edittext-mask.git'
-//group = "me.alexandermatveychuk.android.maskededittext"
-//
-//install {
-//    repositories.mavenInstaller{
-//        pom {
-//            project {
-//                packaging 'aar'
-//
-//                name 'MaskedEditText aar package'
-//                url siteUrl
-//
-//                licenses{
-//                    license {
-//                        name 'The Apache Software License, Version 2.0'
-//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//                    }
-//                }
-//
-//                developers {
-//                    developer {
-//                        id 'alexandermatveychuk'
-//                        name 'Alexander Matveychuk'
-//                        email 'alexander.matveychuk@gmail.com'
-//                    }
-//                }
-//
-//                scm {
-//                    connection gitUrl
-//                    developerConnection gitUrl
-//                    url siteUrl
-//                }
-//
-//            }
-//        }
-//    }
-//}
-//
-//task sourcesJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier = 'sources'
-//}
-//
-//task javadoc(type: Javadoc) {
-//    source = android.sourceSets.main.java.srcDirs
-//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-//}
-//
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    classifier = 'javadoc'
-//    from javadoc.destinationDir
-//}
-//
-//artifacts {
-//    archives javadocJar
-//    archives sourcesJar
-//}
-//
-//Properties properties = new Properties()
-//properties.load(project.rootProject.file('local.properties').newDataInputStream())
-//
-//bintray {
-//    user = properties.getProperty("bintray.user")
-//    key = properties.getProperty("bintray.apikey")
-//
-//    configurations = ['archives']
-//    pkg {
-//        repo = "maven"
-//        name = "MaskedEditText"
-//        websiteUrl = siteUrl
-//        vcsUrl = gitUrl
-//        licenses = ["Apache-2.0"]
-//        publish = true
-//    }
-//}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+bintray {
+    user = System.getProperty("bintray.user")
+    key = System.getProperty("bintray.apikey")
+
+    println user
+    println key
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = projectName
+        userOrg = user
+//        projectUrl = webUrl
+        vcsUrl = gitUrl
+        licenses = ["MIT"]
+        group = projectGroup
+        publish = true
+
+        version {
+            name = projectVersion
+//            desc = projectDescription
+            vcsTag = projectVersion
+            attributes = ['gradle-plugin':'com.use.less:com.use.less.gradle:gradle-userless-plugin']
+        }
+    }
+}

@@ -1,4 +1,5 @@
 # MaskedEditText
+[ ![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion)
 
 This project derives from [toshikurauchi/MaskedEditText](https://github.com/toshikurauchi/MaskedEditText), but it's been a little bit adapted for gradle build system and has two additional features
 
@@ -32,10 +33,10 @@ Also you need to download project and plug it in as a library (project doesn't h
         mask:mask="+7(###)###-##-##"
         />    
 Where _mask_ is the input mask you want and '#' is an editable position (will be replaced by a whitespace on screen).
-    
+
 You can optionally set the representation character (in case you don't want to use '#'):
 
-    <br.com.sapereaude.maskedEditText.MaskedEditText 
+    <br.com.sapereaude.maskedEditText.MaskedEditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         mask:mask="ccc.ccc.ccc-cc"
@@ -53,11 +54,11 @@ You can also change the mask and the representation character programatically:
 	editText.setMask("##/##/####");
 	// Logging the mask
 	Log.i("Mask", editText.getMask());
-	
+
 *************************************************************************************************
 ## ru_RU
 
-MarkedEditText - это всего лишь EditText, но с возможностью задавать произвольную маску. 
+MarkedEditText - это всего лишь EditText, но с возможностью задавать произвольную маску.
 
 Например, нужно ввести телефон в формате +7(XXX)XXX-XX-XX. Причём можно ввести только цифры, а скобочки, дефисы и "+7" должны подставляться самостоятельно.
 
@@ -74,12 +75,12 @@ MarkedEditText - это всего лишь EditText, но с возможнос
         mask:allowed_chars="1234567890"
         mask:mask="+7(###)###-##-##"
         />
-    
+
 _mask_ задаёт требуемую маску, символ '#' задаёт редактируемую позицию (и будет заменён на пробел на экране).
-    
+
 Если использовать '#' нельзя, то можно попробовать использовать другой символ:
 
-    <br.com.sapereaude.maskedEditText.MaskedEditText 
+    <br.com.sapereaude.maskedEditText.MaskedEditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         mask:mask="ccc.ccc.ccc-cc"
