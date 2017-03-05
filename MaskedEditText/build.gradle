@@ -5,7 +5,7 @@ plugins {
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-String projectVersion = "1.0.2"
+String projectVersion = "1.0.3"
 String projectGroup = "ru.egslava"
 
 version = projectVersion
@@ -106,8 +106,8 @@ artifacts {
 }
 
 bintray {
-    user = System.getProperty("bintray.user")
-    key = System.getProperty("bintray.apikey")
+    user = bintrayUser
+    key = bintrayApikey
 
     println user
     println key
@@ -127,7 +127,6 @@ bintray {
             name = projectVersion
 //            desc = projectDescription
             vcsTag = projectVersion
-            attributes = ['gradle-plugin':'com.use.less:com.use.less.gradle:gradle-userless-plugin']
         }
     }
 }
