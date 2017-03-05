@@ -82,7 +82,8 @@ install {
 }
 
 // The end of the gradle file is for JCenter publication.
-// The original code was written by Alexander Matveychuk
+// The original code was written with look at Alexander Matveychuk's code
+// and
 // https://www.virag.si/2015/01/publishing-gradle-android-library-to-jcenter/
 
 task sourcesJar(type: Jar) {
