@@ -138,7 +138,7 @@ public class MainActivityTest {
 
         // tests
                 .perform(dontKeepHints)
-                .check(matches(withText("+7(")))
+                .check(matches(withText("+7(999)705-56-71")))
                 .perform(keepHints)
                 .check(matches(withText("+7(999)705-56-71")))
                 .perform(dontKeepHints)

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
@@ -100,6 +101,12 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
 		Log.d(TAG, "onRestoreInstanceState: " + text);
 		setText(text);
+	}
+
+	@Override
+	public void setText(CharSequence text, BufferType type) {
+//		if (text == null || text.equals("")) return;
+		super.setText(text, type);
 	}
 
 	/** @param listener - its onFocusChange() method will be called before performing MaskedEditText operations,
@@ -322,11 +329,11 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
                 selEnd = fixSelection(selEnd);
 
 				// exactly in this order. If getText.length() == 0 then selStart will be -1
-				if (selStart >= getText().length()) selStart = getText().length() - 1;
+				if (selStart > getText().length()) selStart = getText().length();
 				if (selStart < 0) selStart = 0;
 
 				// exactly in this order. If getText.length() == 0 then selEnd will be -1
-				if (selEnd >= getText().length()) selEnd = getText().length() - 1;
+				if (selEnd > getText().length()) selEnd = getText().length();
 				if (selEnd < 0) selEnd = 0;
 
 				setSelection(selStart, selEnd);
@@ -377,6 +384,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		}
 		return nextValidPosition(rawToMask[rawText.length()]);
 	}
+
 
 	private String makeMaskedText() {
         int maskedTextLength;
