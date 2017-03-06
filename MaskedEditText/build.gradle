@@ -5,7 +5,7 @@ plugins {
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-String projectVersion = "1.0.3"
+String projectVersion = "1.0.4"
 String projectGroup = "ru.egslava"
 
 version = projectVersion
@@ -17,7 +17,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 9
         targetSdkVersion 25
         versionCode 1
         versionName projectVersion

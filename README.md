@@ -11,7 +11,7 @@ So it allows you to use masks for phones, urls, etc.
 
 Enjoy!
 
-*************************************************************************************************
+*********************************
 ## en_US
 
 MakedEditText is a simple Android EditText with customizable input mask support.
