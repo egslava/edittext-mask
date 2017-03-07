@@ -21,10 +21,11 @@ MakedEditText is a simple Android EditText with customizable input mask support.
 For instance, you need user specified his phone in format +7(XXX)XXX-XX-XX. You also know user should have the only possibility to write digits but minuses, brackets and "+7" should appear automatically.
 
 ### Usage
+The last version is: [ ![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion)
 
-Add this to your `build.gradle`:
+Add this to your `build.gradle` :
 ```groovy
-compile 'ru.egslava:MaskedEditText:${last_version_see_above_in_the_beginning}'
+compile 'ru.egslava:MaskedEditText:${last_version}'
 ```
 Or download project and plug it in as a library.
 
@@ -72,6 +73,8 @@ MarkedEditText - это всего лишь EditText, но с возможнос
 Например, нужно ввести телефон в формате +7(XXX)XXX-XX-XX. Причём можно ввести только цифры, а скобочки, дефисы и "+7" должны подставляться самостоятельно.
 
 ### Использование
+Текущая последняя версия: [ ![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion)
+
 Вписать в `build.gradle`:
 ```groovy
 compile 'ru.egslava:MaskedEditText:${последняя_версия_смотри_бедж_в_начале}'
