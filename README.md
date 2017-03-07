@@ -1,11 +1,14 @@
 # MaskedEditText
 [ ![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion)
 
-This project derives from [toshikurauchi/MaskedEditText](https://github.com/toshikurauchi/MaskedEditText), but it's been a little bit adapted for gradle build system and has two additional features
+![Download](README.gif)
+
+This project derives from [toshikurauchi/MaskedEditText](https://github.com/toshikurauchi/MaskedEditText), but it's been adapted for gradle build system and has additional features:
 
 1. filter allowed chars
 2. filter denied chars
 3. user can use chars from mask in his input (in original version of this library user couldn't use digit '7' in the '+7(XXX)XXX-XX-XX' pattern).
+4. You can keep hints even when user started typing.
 
 So it allows you to use masks for phones, urls, etc.
 
@@ -13,15 +16,20 @@ Enjoy!
 
 *********************************
 ## en_US
-
 MakedEditText is a simple Android EditText with customizable input mask support.
 
 For instance, you need user specified his phone in format +7(XXX)XXX-XX-XX. You also know user should have the only possibility to write digits but minuses, brackets and "+7" should appear automatically.
 
 ### Usage
 
-Add _xmlns:mask="http://schemas.android.com/apk/res/com.your.app.package"_ to your layout xml root.
-Also you need to download project and plug it in as a library (project doesn't have a maven repository) so you can start using the library:
+Add this to your `build.gradle`:
+```groovy
+compile 'ru.egslava:MaskedEditText:${last_version_see_above_in_the_beginning}'
+```
+Or download project and plug it in as a library.
+
+
+Add _xmlns:mask="http://schemas.android.com/apk/res/com.your.app.package"_ to your layout xml root:
 
       <br.com.sapereaude.maskedEditText.MaskedEditText
         android:id="@+id/phone_input"
@@ -31,6 +39,7 @@ Also you need to download project and plug it in as a library (project doesn't h
         android:typeface="monospace"
         mask:allowed_chars="1234567890"
         mask:mask="+7(###)###-##-##"
+        app:keep_hint="true"
         />    
 Where _mask_ is the input mask you want and '#' is an editable position (will be replaced by a whitespace on screen).
 
@@ -63,8 +72,13 @@ MarkedEditText - это всего лишь EditText, но с возможнос
 Например, нужно ввести телефон в формате +7(XXX)XXX-XX-XX. Причём можно ввести только цифры, а скобочки, дефисы и "+7" должны подставляться самостоятельно.
 
 ### Использование
+Вписать в `build.gradle`:
+```groovy
+compile 'ru.egslava:MaskedEditText:${последняя_версия_смотри_бедж_в_начале}'
+```
+или скачать проект и подключить как библиотеку.
 
-Добавить _xmlns:mask="http://schemas.android.com/apk/res-auto"_ в корневой элемент файла разметки. Кроме того, нужно скачать проект и добавить его в зависимости к основному проекту, после чего элемент можно начать использовать:
+Добавить _xmlns:mask="http://schemas.android.com/apk/res-auto"_ в корневой элемент файла разметки:
 
       <br.com.sapereaude.maskedEditText.MaskedEditText
         android:id="@+id/phone_input"
@@ -74,6 +88,7 @@ MarkedEditText - это всего лишь EditText, но с возможнос
         android:typeface="monospace"
         mask:allowed_chars="1234567890"
         mask:mask="+7(###)###-##-##"
+        app:keep_hint="true"
         />
 
 _mask_ задаёт требуемую маску, символ '#' задаёт редактируемую позицию (и будет заменён на пробел на экране).

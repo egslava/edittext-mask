@@ -11,9 +11,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.security.InvalidParameterException;
+
 import ru.egslava.lib_phone.actions.HintViewAction;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -145,5 +148,62 @@ public class MainActivityTest {
 
                 // YES! Because the text is empty, user need to see a hint
                 .check(matches(withText("+7(999)705-56-71")));
+    }
+    /**
+     * It should keep state of keepHint after activity recreation :-/
+     * It's the regression test
+     */
+    @Test
+    public void keepHintAfterRotationTest() throws InterruptedException {
+
+        // ======================================
+        // if initial state was keepHint(false)
+
+        // given
+        onView(withId(phone_input))
+                .perform(new HintViewAction("9997055671"))
+                .perform(keepHints)
+                .perform(typeText("999"))
+                .check(matches(withText("+7(999)705-56-71")))
+                .perform(dontKeepHints);
+
+        // rotating screen
+        final TestActivity a1 = mActivityTestRule.getActivity();
+        a1.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        Thread.sleep(2500);
+        final TestActivity a2 = mActivityTestRule.getActivity();
+        a2.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        Thread.sleep(2500);
+
+
+        if (a1 != a2) {
+            throw new InvalidParameterException("a1 != a2");
+        }
+        // tests
+        onView(withId(phone_input))
+                .check(matches(withText("+7(999)")));
+
+        // ======================================
+        // and if initial state was keepHint(true)
+
+        onView(withId(phone_input))
+                .perform(clearText())   // after previous test
+                .perform(new HintViewAction("1234567890"))
+                .perform(keepHints)
+                .perform(typeText("999"))
+                .check(matches(withText("+7(999)456-78-90")))
+                ;
+
+        // rotating screen
+        mActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        Thread.sleep(5000);
+        mActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        Thread.sleep(2500);
+
+
+        // tests
+        onView(withId(phone_input))
+                .check(matches(withText("+7(999)456-78-90")));
     }
 }

@@ -5,7 +5,7 @@ plugins {
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-String projectVersion = "1.0.4"
+String projectVersion = "1.0.5"
 String projectGroup = "ru.egslava"
 
 version = projectVersion
