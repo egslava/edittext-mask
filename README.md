@@ -2,7 +2,7 @@
 [ ![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion)
 [![Build Status](https://travis-ci.org/egslava/edittext-mask.svg?branch=dev)](https://travis-ci.org/egslava/edittext-mask)
 
-![Download](README.gif)
+![Download](publish/README.gif)
 
 This project derives from [toshikurauchi/MaskedEditText](https://github.com/toshikurauchi/MaskedEditText), but it's been adapted for gradle build system and has additional features:
 
