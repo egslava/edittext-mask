@@ -23,7 +23,7 @@ For instance, you need user specified his phone in format +7(XXX)XXX-XX-XX. You 
 
 ### Usage
 
-Add this to your `build.gradle`:
+Add this to your `build.gradle` :
 ```groovy
 compile 'ru.egslava:MaskedEditText:1.0.5'
 ```
@@ -73,6 +73,7 @@ MarkedEditText - это всего лишь EditText, но с возможнос
 Например, нужно ввести телефон в формате +7(XXX)XXX-XX-XX. Причём можно ввести только цифры, а скобочки, дефисы и "+7" должны подставляться самостоятельно.
 
 ### Использование
+
 Вписать в `build.gradle`:
 ```groovy
 compile 'ru.egslava:MaskedEditText:1.0.5'
