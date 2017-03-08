@@ -109,9 +109,6 @@ bintray {
     user = bintrayUser
     key = bintrayApikey
 
-    println user
-    println key
-
     configurations = ['archives']
     pkg {
         repo = "maven"
