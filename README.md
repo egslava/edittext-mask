@@ -1,5 +1,6 @@
 # MaskedEditText
 [ ![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion)
+[![Build Status](https://travis-ci.org/egslava/edittext-mask.svg?branch=dev)](https://travis-ci.org/egslava/edittext-mask)
 
 ![Download](README.gif)
 
@@ -24,7 +25,7 @@ For instance, you need user specified his phone in format +7(XXX)XXX-XX-XX. You 
 
 Add this to your `build.gradle`:
 ```groovy
-compile 'ru.egslava:MaskedEditText:${last_version_see_above_in_the_beginning}'
+compile 'ru.egslava:MaskedEditText:1.0.5'
 ```
 Or download project and plug it in as a library.
 
@@ -74,7 +75,7 @@ MarkedEditText - это всего лишь EditText, но с возможнос
 ### Использование
 Вписать в `build.gradle`:
 ```groovy
-compile 'ru.egslava:MaskedEditText:${последняя_версия_смотри_бедж_в_начале}'
+compile 'ru.egslava:MaskedEditText:1.0.5'
 ```
 или скачать проект и подключить как библиотеку.
 
