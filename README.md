@@ -1,8 +1,6 @@
-# MaskedEditText
-[ ![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion)
-[![Build Status](https://travis-ci.org/egslava/edittext-mask.svg?branch=master)](https://travis-ci.org/egslava/edittext-mask)
+# MaskedEditText [![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion) [![Build Status](https://travis-ci.org/egslava/edittext-mask.svg?branch=master)](https://travis-ci.org/egslava/edittext-mask)
 
-![Download](publish/README.gif)
+![MaskedEditText - the library for masked input of phone numbers, social security numbers and so on for Android](publish/README.gif)
 
 This project derives from [toshikurauchi/MaskedEditText](https://github.com/toshikurauchi/MaskedEditText), but it's been adapted for gradle build system and has additional features:
 
@@ -14,6 +12,8 @@ This project derives from [toshikurauchi/MaskedEditText](https://github.com/tosh
 So it allows you to use masks for phones, urls, etc.
 
 Enjoy!
+
+<a href='https://play.google.com/store/apps/details?id=ru.egslava.edittextmaskdemo&utm_source=github&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width=200 alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
 *********************************
 ## en_US
