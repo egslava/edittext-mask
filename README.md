@@ -41,6 +41,7 @@ Add _xmlns:mask="http://schemas.android.com/apk/res/com.your.app.package"_ to yo
         android:typeface="monospace"
         mask:allowed_chars="1234567890"
         mask:mask="+7(###)###-##-##"
+	android:hint="1234567890"
         app:keep_hint="true"
         />    
 Where _mask_ is the input mask you want and '#' is an editable position (will be replaced by a whitespace on screen).
