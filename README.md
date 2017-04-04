@@ -42,7 +42,7 @@ compile 'ru.egslava:MaskedEditText:1.0.5'
 Or download project and plug it in as a library.
 
 
-Add _xmlns:mask="http://schemas.android.com/apk/res/com.your.app.package"_ to your layout xml root:
+Add _xmlns:mask="http://schemas.android.com/apk/res-auto"_ to your layout xml root:
 
       <br.com.sapereaude.maskedEditText.MaskedEditText
         android:id="@+id/phone_input"
