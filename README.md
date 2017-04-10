@@ -29,7 +29,7 @@ Enjoy!
 
 *********************************
 ## en_US
-MakedEditText is a simple Android EditText with customizable input mask support.
+MaskedEditText is a simple Android EditText with customizable input mask support.
 
 For instance, you need user specified his phone in format +7(XXX)XXX-XX-XX. You also know user should have the only possibility to write digits but minuses, brackets and "+7" should appear automatically.
 
@@ -81,7 +81,7 @@ You can also change the mask and the representation character programatically:
 *************************************************************************************************
 ## ru_RU
 
-MarkedEditText - это всего лишь EditText, но с возможностью задавать произвольную маску.
+MaskedEditText - это всего лишь EditText, но с возможностью задавать произвольную маску.
 
 Например, нужно ввести телефон в формате +7(XXX)XXX-XX-XX. Причём можно ввести только цифры, а скобочки, дефисы и "+7" должны подставляться самостоятельно.
 
