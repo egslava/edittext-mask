@@ -1,12 +1,8 @@
-<details><summary><b>Android jobs</b>? Please, click here!</summary>Hi! I'm an Android App developer since 2013.
-My resume: https://drive.google.com/open?id=0B2dZMO3lDkCAczQ4bmtEQUVMOEk
-<br/>
-Upwork (with portfolio): https://www.upwork.com/fl/viacheslave
-<br/>
-Skype: viacheslav.egorenkov
-<br/>
-egslava@gmail.com
-
+<details><summary><b>Android jobs</b>? Please, click here!</summary>Hi! I'm an Android App developer since 2013!<br/>
+My resume: https://goo.gl/PlKt87 <br/>
+Upwork (with portfolio): https://www.upwork.com/fl/viacheslave <br/>
+Skype: viacheslav.egorenkov <br/>
+egslava@gmail.com <br/>
 <br/>
 The info is easy to copy/paste (for sharing :) ) so if you don't have any jobs now - I'd be glad if you just copy/paste it to your community. Thank you very much!
 </details>
