@@ -4,7 +4,8 @@ Upwork (with portfolio): https://www.upwork.com/fl/viacheslave <br/>
 Skype: viacheslav.egorenkov <br/>
 egslava@gmail.com <br/>
 <br/>
-The info is easy to copy/paste (for sharing :) ) so if you don't have any jobs now - I'd be glad if you just copy/paste it to your community. Thank you very much!
+
+The info is easy to copy/paste :) <b>Please, share it</b> it's easy and I will be very glad. Thank you! :)
 </details>
 
 # MaskedEditText
