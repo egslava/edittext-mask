@@ -1,14 +1,12 @@
-<details><summary>Don't click on me</summary>Sorry everyone :-) My friend is looking for a remote job/freelance. So if you can recommend her some positions or <b>just share this info</b> - I would like to say you the big thanks.
+<details><summary>Android jobs? Please, click here!</summary>Hi! I'm an Android App developer since 2013.
+My resume: https://drive.google.com/open?id=0B2dZMO3lDkCAczQ4bmtEQUVMOEk
+Upwork (with portfolio): https://www.upwork.com/fl/viacheslave
+Skype: viacheslav.egorenkov
+egslava@gmail.com
 
-She does responsive web layouts with SASS/Compass/JQuery/animate.css and can scaffold your the next design on bootstrap very fast in a very accurate manner.
+The info is easy to copy/paste (for sharing :) ) so if you don't have any jobs now - I'd be glad if you just copy/paste it to your community. Thank you very much!
+</details>
 
-<a href="https://www.youtube.com/watch?v=Z5z5p3VeZz0&feature=youtu.be&list=PLYup6nD6ExHI2IP7FVWyKPJ84N64Je0T8" target="_blank"><img src="https://i.ytimg.com/vi/Z5z5p3VeZz0/hqdefault.jpg?custom=true&w=168&h=94&stc=true&jpg444=true&jpgq=90&sp=67&sigh=xy8xsPSqd2G1QrmRu4i37bN8s4Y" 
-alt="portfolio" border="10" /></a>
-
-Under videos you can see project descriptions, time to complete, sources on github and all necessary info. 
-
-annelia1991@gmail.com
-skype: annelia_55</details>
 # MaskedEditText
 [![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion) [![Build Status](https://travis-ci.org/egslava/edittext-mask.svg?branch=master)](https://travis-ci.org/egslava/edittext-mask)
 
