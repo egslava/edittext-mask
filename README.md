@@ -1,13 +1,3 @@
-<details><summary><b>Android jobs</b>? Please, click here!</summary>Hi! I'm an Android App developer since 2013!<br/>
-My resume: https://goo.gl/PlKt87 <br/>
-Upwork (with portfolio): https://www.upwork.com/fl/viacheslave <br/>
-Skype: viacheslav.egorenkov <br/>
-egslava@gmail.com <br/>
-<br/>
-
-The info is easy to copy/paste :) <b>Please, share it</b> it's easy and I will be very glad. Thank you! :)
-</details>
-
 # MaskedEditText
 [![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion) [![Build Status](https://travis-ci.org/egslava/edittext-mask.svg?branch=master)](https://travis-ci.org/egslava/edittext-mask)
 
