@@ -173,6 +173,24 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		init();
 	}
 
+	public String getAllowedChars() {
+		return this.allowedChars;
+	}
+
+	public void setAllowedChars(String allowedChars) {
+		this.allowedChars = allowedChars;
+		cleanUp();
+	}
+
+	public String getDeniedChars() {
+		return this.deniedChars;
+	}
+
+	public void setDeniedChars(String deniedChars) {
+		this.deniedChars = deniedChars;
+		cleanUp();
+	}
+
 	public void setMask(String mask) {
 		this.mask = mask;
 		cleanUp();
