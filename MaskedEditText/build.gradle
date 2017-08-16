@@ -26,7 +26,7 @@ android {
 }
 
 dependencies {
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
@@ -105,25 +105,26 @@ artifacts {
     archives sourcesJar
 }
 
-bintray {
-    user = bintrayUser
-    key = bintrayApikey
+if(hasProperty("bintrayUser") && hasProperty("bintrayApikey")) {
+    bintray {
+        user = bintrayUser
+        key = bintrayApikey
 
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = projectName
-        userOrg = user
-//        projectUrl = webUrl
-        vcsUrl = gitUrl
-        licenses = ["MIT"]
-        group = projectGroup
-        publish = true
+        configurations = ['archives']
+        pkg {
+            repo = "maven"
+            name = projectName
+            userOrg = user
+            vcsUrl = gitUrl
+            licenses = ["MIT"]
+            group = projectGroup
+            publish = true
 
-        version {
-            name = projectVersion
-//            desc = projectDescription
-            vcsTag = projectVersion
+            version {
+                name = projectVersion
+                vcsTag = projectVersion
+            }
         }
     }
 }
+
