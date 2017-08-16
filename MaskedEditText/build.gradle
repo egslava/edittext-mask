@@ -5,20 +5,20 @@ plugins {
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-String projectVersion = "1.0.5"
+String projectVersion = "1.0.6"
 String projectGroup = "ru.egslava"
 
 version = projectVersion
 group = projectGroup
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
 
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 26
         versionCode 1
         versionName projectVersion
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,18 +30,18 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.2.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.0.1'
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 
 
 // bintray deploy ....
 String projectName = "edittext-mask"
 String projectDescription = GFileUtils.readFile(new File("README.md"))
-String webUrl = "https://github.com/egslava/edittext-mask"
-String gitUrl = "https://github.com/egslava/edittext-mask.git"
+String webUrl = "https://github.com/edwardstock/edittext-mask"
+String gitUrl = "https://github.com/edwardstock/edittext-mask.git"
 
 
 install {

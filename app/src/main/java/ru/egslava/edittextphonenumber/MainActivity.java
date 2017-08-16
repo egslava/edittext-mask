@@ -1,24 +1,19 @@
 package ru.egslava.edittextphonenumber;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.Spanned;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-
 
 import br.com.sapereaude.maskedEditText.MaskedEditText;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MaskedEditText phone = (MaskedEditText)findViewById(R.id.phone_input);
+        MaskedEditText phone = findViewById(R.id.phone_input);
     }
 
     @Override
