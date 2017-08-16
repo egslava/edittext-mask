@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
@@ -51,6 +52,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.MaskedEditText);
         mask = attributes.getString(R.styleable.MaskedEditText_mask);
+        if (mask == null) mask = "";
 
         allowedChars = attributes.getString(R.styleable.MaskedEditText_allowed_chars);
         deniedChars = attributes.getString(R.styleable.MaskedEditText_denied_chars);
@@ -129,6 +131,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
         generatePositionArrays();
 
+        if (rawToMask.length == 0) return;
         rawText = new RawText();
         selection = rawToMask[0];
 
@@ -180,7 +183,6 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
     public void setAllowedChars(String allowedChars) {
         this.allowedChars = allowedChars;
-        cleanUp();
     }
 
     public String getDeniedChars() {
@@ -189,14 +191,15 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
     public void setDeniedChars(String deniedChars) {
         this.deniedChars = deniedChars;
-        cleanUp();
     }
 
     public String getMask() {
         return this.mask;
     }
 
-    public void setMask(String mask) {
+    public void setMask(@NonNull String mask) {
+        //noinspection ConstantConditions
+        if (mask == null) throw new NullPointerException("Mask can't be null");
         this.mask = mask;
         cleanUp();
     }
