@@ -118,12 +118,20 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		focusChangeListener = listener;
 	}
 
-	private void cleanUp() {
+        private void cleanUp(){
+            cleanUp(false);
+        }
+	
+	private void cleanUp(boolean keepText) {
 		initialized = false;
 
 		generatePositionArrays();
 
-		rawText = new RawText();
+                if (keepText && rawText != null) {
+                    rawText = new RawText();
+                    selection = rawToMask[0];
+                }
+		
 		selection = rawToMask[0];
 
 		editingBefore = true;
@@ -173,10 +181,14 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		init();
 	}
 
-	public void setMask(String mask) {
-		this.mask = mask;
-		cleanUp();
-	}
+        public void setMask(String mask) {
+            setMask(mask, false);
+        }
+
+        public void setMask(String mask, boolean keepText) {
+            this.mask = mask;
+            cleanUp(keepText);
+        }
 
 	public String getMask() {
 		return this.mask;
