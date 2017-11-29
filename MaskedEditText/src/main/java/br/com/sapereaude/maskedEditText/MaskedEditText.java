@@ -39,7 +39,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 	private OnFocusChangeListener focusChangeListener;
     private String allowedChars;
     private String deniedChars;
-
+    private boolean shouldKeepText;
 
     public MaskedEditText(Context context) {
 		super(context);
@@ -120,12 +120,14 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
 	private void cleanUp() {
 		initialized = false;
-
+		if(mask == null || mask.isEmpty()){
+                    return;
+                }
 		generatePositionArrays();
-
-		rawText = new RawText();
-		selection = rawToMask[0];
-
+                if (!shouldKeepText || rawText == null) {
+                    rawText = new RawText();
+                    selection = rawToMask[0];
+                }
 		editingBefore = true;
 		editingOnChanged = true;
 		editingAfter = true;
@@ -172,6 +174,14 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		super(context, attrs, defStyle);
 		init();
 	}
+
+        public void setShouldKeepText(boolean shouldKeepText) {
+            this.shouldKeepText = shouldKeepText;
+        }
+
+        public boolean isKeepingText() {
+            return shouldKeepText;
+        }
 
 	public void setMask(String mask) {
 		this.mask = mask;
