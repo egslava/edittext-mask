@@ -21,7 +21,19 @@ import static android.content.ContentValues.TAG;
 public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
     public static final String SPACE = " ";
-    private String mask;
+	private final OnEditorActionListener onEditorActionListener = new OnEditorActionListener() {
+		@Override
+		public boolean onEditorAction(TextView v, int actionId,KeyEvent event) {
+			switch (actionId) {
+//				case EditorInfo.IME_ACTION_NEXT:
+				// fixing actionNext
+//					return false;
+				default:
+					return true;
+			}
+		}
+	};
+	private String mask;
 	private char charRepresentation;
 	private boolean keepHint;
 	private int[] rawToMask;
@@ -55,6 +67,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
         allowedChars = attributes.getString(R.styleable.MaskedEditText_allowed_chars);
         deniedChars = attributes.getString(R.styleable.MaskedEditText_denied_chars);
+        boolean enableImeAction = attributes.getBoolean(R.styleable.MaskedEditText_enable_ime_action, false);
 
 		String representation = attributes.getString(R.styleable.MaskedEditText_char_representation);
 
@@ -68,19 +81,12 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
 		cleanUp();
 
-		// Ignoring enter key presses
-		setOnEditorActionListener(new OnEditorActionListener() {
-			@Override
-			public boolean onEditorAction(TextView v, int actionId,KeyEvent event) {
-				switch (actionId) {
-//				case EditorInfo.IME_ACTION_NEXT:
-					// fixing actionNext
-//					return false;
-				default:
-					return true;
-				}
-			}
-		});
+		// Ignoring enter key presses if needed
+		if (!enableImeAction) {
+			setOnEditorActionListener(onEditorActionListener);
+		} else {
+			setOnEditorActionListener(null);
+		}
 		attributes.recycle();
 	}
 
@@ -182,6 +188,13 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		return this.mask;
 	}
 
+	public void setImeActionEnabled(boolean isEnabled) {
+		if (isEnabled)
+			setOnEditorActionListener(onEditorActionListener);
+		else
+			setOnEditorActionListener(null);
+	}
+
 	public String getRawText() {
 		return this.rawText.getText();
 	}
@@ -230,9 +243,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 		char[] charsInMask = charsInMaskAux.toCharArray();
 
 		rawToMask = new int[charIndex];
-		for (int i = 0; i < charIndex; i++) {
-			rawToMask[i] = aux[i];
-		}
+		System.arraycopy(aux, 0, rawToMask, 0, charIndex);
 	}
 
 	private void init() {
