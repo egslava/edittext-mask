@@ -69,11 +69,11 @@ You can also change the mask and the representation character programatically:
 	
 To enable Enter softkey action (IME action):
 
-    <br.com.sapereaude.maskedEditText.MaskedEditText
-        ...
-	mask:enable_ime_action="true"
-	...
-    />
+	<br.com.sapereaude.maskedEditText.MaskedEditText
+	    ...
+	    mask:enable_ime_action="true"
+	    ...
+	/>
     
 Or programmatically:
 
@@ -134,11 +134,11 @@ _mask_ задаёт требуемую маску, символ '#' задаёт
 	
 Чтобы включить обработку нажатия Enter (IME action):
 
-    <br.com.sapereaude.maskedEditText.MaskedEditText
-        ...
-	mask:enable_ime_action="true"
-	...
-    />
+	<br.com.sapereaude.maskedEditText.MaskedEditText
+	    ...
+	    mask:enable_ime_action="true"
+	    ...
+	/>
     
 Или программно:
 
