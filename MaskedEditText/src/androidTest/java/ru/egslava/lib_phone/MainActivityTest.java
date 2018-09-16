@@ -28,6 +28,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static ru.egslava.lib_phone.actions.KeepHintViewAction.dontKeepHints;
 import static ru.egslava.lib_phone.actions.KeepHintViewAction.keepHints;
+import static ru.egslava.lib_phone.actions.PasswordAction.passwordModeOff;
+import static ru.egslava.lib_phone.actions.PasswordAction.passwordModeOn;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -126,6 +128,24 @@ public class MainActivityTest {
                 // the second check. After setKeepHint(false) the hint should disappear immediate
                 .perform(dontKeepHints)
                 .check(matches(withText("+7(999)")));
+    }
+
+    /**
+     * After setPasswordMode(true) a password should appeared.
+     * After setPasswordMode(false) a password should disappear.
+     */
+    @Test
+    public void setPasswordMode() {
+        onView(withId(phone_input))
+//                .perform(new HintViewAction("9997055671"))
+                .perform(passwordModeOff)     // just to be sure
+
+                .perform(passwordModeOn)
+                .perform(typeText("9997055671"))
+                .check(matches(withText("+7(•••)•••-••-••")))
+
+                .perform(passwordModeOff)
+                .check(matches(withText("+7(")));
     }
 
 

@@ -20,12 +20,12 @@
         android:id="@+id/phone_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ßßßßßßßßß"
+        android:hint="ßßßßßßßßß∂"
         android:textColorHint="@android:color/darker_gray"
         android:typeface="monospace"
         mask:allowed_chars="1234567890"
         mask:keep_hint="true"
-        mask:mask="###-##-####"
+        mask:mask="+7(###)###-##-##"
         mask:password_mode="true"
         mask:password_representation="∆" />
 
