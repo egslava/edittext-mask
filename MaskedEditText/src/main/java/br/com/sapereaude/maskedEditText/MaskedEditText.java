@@ -208,6 +208,15 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
         cleanUp();
     }
 
+    public boolean isPasswordMode() {
+        return passwordMode;
+    }
+
+    public void setPasswordMode(final boolean passwordMode) {
+        this.passwordMode = passwordMode;
+        cleanUp();
+    }
+
     /**
      * Generates positions for values characters. For instance:
      * Input data: mask = "+7(###)###-##-##
@@ -494,11 +503,5 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
         return string;
     }
 
-    public boolean isPasswordMode() {
-        return passwordMode;
-    }
 
-    public void setPasswordMode(final boolean passwordMode) {
-        this.passwordMode = passwordMode;
-    }
 }

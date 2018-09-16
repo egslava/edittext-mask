@@ -75,3 +75,6 @@ proguard/
 
 # Log Files
 *.log
+
+
+MaskedEditText/build.gradle
