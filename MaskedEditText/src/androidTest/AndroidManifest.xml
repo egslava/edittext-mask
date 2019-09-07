@@ -5,12 +5,12 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="10" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="26" />
 
     <application >
         <activity android:name="ru.egslava.lib_phone.TestActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/Theme.AppCompat" />
     </application>
 
 </manifest>

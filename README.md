@@ -1,5 +1,5 @@
 # MaskedEditText
-[![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion) [![Build Status](https://travis-ci.org/egslava/edittext-mask.svg?branch=master)](https://travis-ci.org/egslava/edittext-mask)
+[![](https://jitpack.io/v/edwardstock/edittext-mask.svg)](https://jitpack.io/#edwardstock/edittext-mask)
 
 ![MaskedEditText - the library for masked input of phone numbers, social security numbers and so on for Android](publish/README.gif)
 
@@ -23,17 +23,22 @@ MaskedEditText is a simple Android EditText with customizable input mask support
 For instance, you need user specified his phone in format +7(XXX)XXX-XX-XX. You also know user should have the only possibility to write digits but minuses, brackets and "+7" should appear automatically.
 
 ### Usage
-
 Add this to your `build.gradle` :
 ```groovy
-compile 'ru.egslava:MaskedEditText:1.0.5'
+compile 'com.github.edwardstock:edittext-mask:1.0.7'
 ```
+
+Or for android gradle plugin >= 3.0 (beta or preview)
+```groovy
+implementation 'com.github.edwardstock:edittext-mask:1.0.7'
+```
+
 Or download project and plug it in as a library.
 
 
 Add _xmlns:mask="http://schemas.android.com/apk/res-auto"_ to your layout xml root:
-
-      <br.com.sapereaude.maskedEditText.MaskedEditText
+```xml
+<br.com.sapereaude.maskedEditText.MaskedEditText
         android:id="@+id/phone_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,31 +47,46 @@ Add _xmlns:mask="http://schemas.android.com/apk/res-auto"_ to your layout xml ro
         mask:allowed_chars="1234567890"
         mask:mask="+7(###)###-##-##"
         android:hint="1234567890"
-        app:keep_hint="true"
-        />    
+        mask:keep_hint="true"
+        />  
+```  
+
 Where _mask_ is the input mask you want and '#' is an editable position (will be replaced by a whitespace on screen).
 
 You can optionally set the representation character (in case you don't want to use '#'):
-
-    <br.com.sapereaude.maskedEditText.MaskedEditText
+```xml
+<br.com.sapereaude.maskedEditText.MaskedEditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         mask:mask="ccc.ccc.ccc-cc"
         mask:char_representation="c"
     />
-
+```
 You can also change the mask and the representation character programatically:
+```java
+import br.com.sapereaude.maskedEditText.MakedEditText;
 
-	MaskedEditText editText = (MaskedEditText) findViewById(R.id.my_edit_text)
-	// Setting the representation character to '$'
-	editText.setCharRepresentation('$');
-	// Logging the representation character
-	Log.i("Representation character", editText.getCharRepresentation());
-	// Setting the mask
-	editText.setMask("##/##/####");
-	// Logging the mask
-	Log.i("Mask", editText.getMask());
-
+class MyActivity extends Activity {
+    
+    void onCreate(Bundle savedInstance) {
+        
+        MaskedEditText editText = (MaskedEditText) findViewById(R.id.my_edit_text);
+        // Setting the representation character to '$'
+        editText.setCharRepresentation('$');
+        // Logging the representation character
+        Log.i("Representation character", editText.getCharRepresentation());
+        // Setting the mask
+        editText.setMask("##/##/####");
+        // Settings allowed chars
+        editText.setAllowedChars("0123456789");
+        // Settings denied chars
+        editText.setDeniedChars("_ "); // underscore, whitespace
+        // Logging the mask
+        Log.i("Mask", editText.getMask());
+        
+    }   
+}
+```
 *************************************************************************************************
 ## ru_RU
 
@@ -78,7 +98,7 @@ MaskedEditText - это всего лишь EditText, но с возможнос
 
 Вписать в `build.gradle`:
 ```groovy
-compile 'ru.egslava:MaskedEditText:1.0.5'
+compile 'com.github.edwardstock:edittext-mask:1.0.7'
 ```
 или скачать проект и подключить как библиотеку.
 
@@ -93,7 +113,7 @@ compile 'ru.egslava:MaskedEditText:1.0.5'
         mask:allowed_chars="1234567890"
         mask:mask="+7(###)###-##-##"
         android:hint="1234567890"
-        app:keep_hint="true"
+        mask:keep_hint="true"
         />
 
 _mask_ задаёт требуемую маску, символ '#' задаёт редактируемую позицию (и будет заменён на пробел на экране).
@@ -108,13 +128,28 @@ _mask_ задаёт требуемую маску, символ '#' задаёт
     />
 
 Кроме того, всё тоже самое можно сделать и программно:
+```java
+import br.com.sapereaude.maskedEditText.MakedEditText;
 
-	MaskedEditText editText = (MaskedEditText) findViewById(R.id.my_edit_text)
-	// Setting the representation character to '$'
-	editText.setCharRepresentation('$');
-	// Logging the representation character
-	Log.i("Representation character", editText.getCharRepresentation());
-	// Setting the mask
-	editText.setMask("##/##/####");
-	// Logging the mask
-	Log.i("Mask", editText.getMask());
+class MyActivity extends Activity {
+    
+    void onCreate(Bundle savedInstance) {
+        
+        MaskedEditText editText = (MaskedEditText) findViewById(R.id.my_edit_text);
+        // Setting the representation character to '$'
+        editText.setCharRepresentation('$');
+        // Logging the representation character
+        Log.i("Representation character", editText.getCharRepresentation());
+        // Setting the mask
+        editText.setMask("##/##/####");
+        // Settings allowed chars
+        editText.setAllowedChars("0123456789");
+        // Settings denied chars
+        editText.setDeniedChars("_ "); // underscore, whitespace
+        // Logging the mask
+        Log.i("Mask", editText.getMask());
+        
+    }   
+}
+```
+	
