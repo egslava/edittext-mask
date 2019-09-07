@@ -1,13 +1,13 @@
 package ru.egslava.lib_phone;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by egslava on 04/03/2017.
  */
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
