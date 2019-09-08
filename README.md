@@ -66,7 +66,20 @@ You can also change the mask and the representation character programatically:
 	editText.setMask("##/##/####");
 	// Logging the mask
 	Log.i("Mask", editText.getMask());
+	
+To enable Enter softkey action (IME action):
 
+	<br.com.sapereaude.maskedEditText.MaskedEditText
+	    ...
+	    mask:enable_ime_action="true"
+	    ...
+	/>
+    
+Or programmatically:
+
+	MaskedEditText editText = (MaskedEditText) findViewById(R.id.my_edit_text)
+	editText.setImeActionEnabled(true);
+	
 *************************************************************************************************
 ## ru_RU
 
@@ -118,3 +131,16 @@ _mask_ задаёт требуемую маску, символ '#' задаёт
 	editText.setMask("##/##/####");
 	// Logging the mask
 	Log.i("Mask", editText.getMask());
+	
+Чтобы включить обработку нажатия Enter (IME action):
+
+	<br.com.sapereaude.maskedEditText.MaskedEditText
+	    ...
+	    mask:enable_ime_action="true"
+	    ...
+	/>
+    
+Или программно:
+
+	MaskedEditText editText = (MaskedEditText) findViewById(R.id.my_edit_text)
+	editText.setImeActionEnabled(true);
