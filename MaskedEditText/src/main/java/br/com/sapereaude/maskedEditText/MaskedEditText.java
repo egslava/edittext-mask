@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.text.TextUtilsCompat;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
@@ -14,11 +12,12 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import static android.content.ContentValues.TAG;
 
-public class MaskedEditText extends AppCompatEditText implements TextWatcher {
+public class MaskedEditText extends EditText implements TextWatcher {
 
     public static final String SPACE = " ";
 	private final OnEditorActionListener onEditorActionListener = new OnEditorActionListener() {
