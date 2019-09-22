@@ -11,10 +11,17 @@
         android:id="@+id/vControl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
         android:inputType="phone"
         android:typeface="monospace"
         mask:allowed_chars="1234567890"
-        mask:mask="+7(###)###-##-##"
-        />
+        mask:enable_ime_action="false"
+        mask:mask="+7(###)###-##-##" />
+
+    <CheckBox
+        android:id="@+id/keep_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Keep Hint" />
 
 </LinearLayout>
