@@ -444,10 +444,7 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 			range.setEnd(rawText.length());
 		}
 		if(range.getStart() == range.getEnd() && start < end) {
-			int newStart = previousValidPosition(range.getStart() - 1);
-			if(newStart < range.getStart()) {
-				range.setStart(newStart);
-			}
+			range.setEnd(range.getEnd() + 1);
 		}
 		return range;
 	}
