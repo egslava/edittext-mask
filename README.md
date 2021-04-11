@@ -1,10 +1,11 @@
-**Announcement**: [be my guest, invite me or let's travel the world](https://github.com/egslava/edittext-mask/issues/65)!
+**Announcement**: [let's travel the world](https://github.com/egslava/edittext-mask/issues/65)! or let's just be guests :)
+
 # MaskedEditText
 [![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion) [![Build Status](https://travis-ci.org/egslava/edittext-mask.svg?branch=master)](https://travis-ci.org/egslava/edittext-mask)
 
 ![MaskedEditText - the library for masked input of phone numbers, social security numbers and so on for Android](publish/README.gif)
 
-**Announcement**: [be my guest, invite me or let's travel the world](https://github.com/egslava/edittext-mask/issues/65)!
+**Announcement**: [let's travel the world](https://github.com/egslava/edittext-mask/issues/65)! or let's just be guests :)
 
 This project derives from [toshikurauchi/MaskedEditText](https://github.com/toshikurauchi/MaskedEditText), but it's been adapted for gradle build system and has additional features:
 
@@ -33,7 +34,7 @@ compile 'ru.egslava:MaskedEditText:1.0.5'
 ```
 Or download project and plug it in as a library.
 
-**Announcement**: [be my guest, invite me or let's travel the world](https://github.com/egslava/edittext-mask/issues/65)!
+**Announcement**: [let's travel the world](https://github.com/egslava/edittext-mask/issues/65)! or let's just be guests :)
 
 Add _xmlns:mask="http://schemas.android.com/apk/res-auto"_ to your layout xml root:
 
