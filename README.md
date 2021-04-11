@@ -26,13 +26,14 @@ MaskedEditText is a simple Android EditText with customizable input mask support
 For instance, you need user specified his phone in format +7(XXX)XXX-XX-XX. You also know user should have the only possibility to write digits but minuses, brackets and "+7" should appear automatically.
 
 ### Usage
-**Announcement**: [be my guest, invite me or let's travel the world](https://github.com/egslava/edittext-mask/issues/65)!
+
 Add this to your `build.gradle` :
 ```groovy
 compile 'ru.egslava:MaskedEditText:1.0.5'
 ```
 Or download project and plug it in as a library.
 
+**Announcement**: [be my guest, invite me or let's travel the world](https://github.com/egslava/edittext-mask/issues/65)!
 
 Add _xmlns:mask="http://schemas.android.com/apk/res-auto"_ to your layout xml root:
 
