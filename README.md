@@ -1,7 +1,10 @@
+**Announcement**: [be my guest, invite me or let's travel the world](https://github.com/egslava/edittext-mask/issues/65)!
 # MaskedEditText
 [![Download](https://api.bintray.com/packages/egorenkov/maven/edittext-mask/images/download.svg) ](https://bintray.com/egorenkov/maven/edittext-mask/_latestVersion) [![Build Status](https://travis-ci.org/egslava/edittext-mask.svg?branch=master)](https://travis-ci.org/egslava/edittext-mask)
 
 ![MaskedEditText - the library for masked input of phone numbers, social security numbers and so on for Android](publish/README.gif)
+
+**Announcement**: [be my guest, invite me or let's travel the world](https://github.com/egslava/edittext-mask/issues/65)!
 
 This project derives from [toshikurauchi/MaskedEditText](https://github.com/toshikurauchi/MaskedEditText), but it's been adapted for gradle build system and has additional features:
 
@@ -23,7 +26,7 @@ MaskedEditText is a simple Android EditText with customizable input mask support
 For instance, you need user specified his phone in format +7(XXX)XXX-XX-XX. You also know user should have the only possibility to write digits but minuses, brackets and "+7" should appear automatically.
 
 ### Usage
-
+**Announcement**: [be my guest, invite me or let's travel the world](https://github.com/egslava/edittext-mask/issues/65)!
 Add this to your `build.gradle` :
 ```groovy
 compile 'ru.egslava:MaskedEditText:1.0.5'
