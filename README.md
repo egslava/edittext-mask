@@ -60,6 +60,8 @@ You can optionally set the representation character (in case you don't want to u
         mask:char_representation="c"
     />
 
+**Announcement**: [let's travel the world](https://github.com/egslava/edittext-mask/issues/65)! or let's just be guests :)
+
 You can also change the mask and the representation character programatically:
 
 	MaskedEditText editText = (MaskedEditText) findViewById(R.id.my_edit_text)
@@ -80,6 +82,8 @@ To enable Enter softkey action (IME action):
 	    ...
 	/>
     
+**Announcement**: [let's travel the world](https://github.com/egslava/edittext-mask/issues/65)! or let's just be guests :)
+
 Or programmatically:
 
 	MaskedEditText editText = (MaskedEditText) findViewById(R.id.my_edit_text)
