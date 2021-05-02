@@ -44,8 +44,8 @@ Add _xmlns:mask="http://schemas.android.com/apk/res-auto"_ to your layout xml ro
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:typeface="monospace"
-        mask:allowed_chars="1234567890"
-        mask:mask="+7(###)###-##-##"
+        app:allowed_chars="1234567890"
+        app:mask="+7(###)###-##-##"
         android:hint="1234567890"
         app:keep_hint="true"
         />    
@@ -56,8 +56,8 @@ You can optionally set the representation character (in case you don't want to u
     <br.com.sapereaude.maskedEditText.MaskedEditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        mask:mask="ccc.ccc.ccc-cc"
-        mask:char_representation="c"
+        app:mask="ccc.ccc.ccc-cc"
+        app:char_representation="c"
     />
 
 **Announcement**: [let's travel the world](https://github.com/egslava/edittext-mask/issues/65)! or let's just be guests :)
@@ -78,7 +78,7 @@ To enable Enter softkey action (IME action):
 
 	<br.com.sapereaude.maskedEditText.MaskedEditText
 	    ...
-	    mask:enable_ime_action="true"
+	    app:enable_ime_action="true"
 	    ...
 	/>
     
@@ -112,8 +112,8 @@ compile 'ru.egslava:MaskedEditText:1.0.5'
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:typeface="monospace"
-        mask:allowed_chars="1234567890"
-        mask:mask="+7(###)###-##-##"
+        app:allowed_chars="1234567890"
+        app:mask="+7(###)###-##-##"
         android:hint="1234567890"
         app:keep_hint="true"
         />
@@ -125,8 +125,8 @@ _mask_ задаёт требуемую маску, символ '#' задаёт
     <br.com.sapereaude.maskedEditText.MaskedEditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        mask:mask="ccc.ccc.ccc-cc"
-        mask:char_representation="c"
+        app:mask="ccc.ccc.ccc-cc"
+        app:char_representation="c"
     />
 
 Кроме того, всё тоже самое можно сделать и программно:
